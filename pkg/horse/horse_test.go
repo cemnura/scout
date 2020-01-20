@@ -10,3 +10,12 @@ func TestGallop(t *testing.T) {
 		t.Error("Expected 6, got ", len(files))
 	}
 }
+
+func TestGallopIncludeHidden(t *testing.T) {
+
+	files := GallopIncludeHidden("testdata")
+
+	if len(files) != 8 {
+		t.Error("Expected 8, got ", len(files))
+	}
+}
