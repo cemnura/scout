@@ -35,7 +35,7 @@ var countCmd = &cobra.Command{
 	Long:  countDesc,
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		ignoreCase, _ := cmd.PersistentFlags().GetBool("ignore-case")
+		ignoreCase, _ := rootCmd.PersistentFlags().GetBool("ignore-case")
 		result := action.Count(args[0], args[1], ignoreCase)
 		fmt.Println(result)
 	},
@@ -48,7 +48,7 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	countCmd.PersistentFlags().BoolP("ignore-case", "i", false, "ignore case")
+	// countCmd.PersistentFlags().BoolP("ignore-case", "i", false, "ignore case")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:

@@ -57,7 +57,7 @@ func init() {
 	// will be global for your application.
 
 	//rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.scout.yaml)")
-	// rootCmd.Flags().BoolP("ignore-case", "i", false, "Help message for toggle")
+	rootCmd.PersistentFlags().BoolP("ignore-case", "i", false, "ignore case")
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 }
