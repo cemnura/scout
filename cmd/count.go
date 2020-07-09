@@ -30,8 +30,8 @@ Default directory is current directory.
 
 // countCmd represents the count command
 var countCmd = &cobra.Command{
-	Use:   "count SEARCH_CRITERIA [DIR]",
-	Short: "Count occurrences of criteria in directory",
+	Use:   "count PATTERN [DIR]",
+	Short: "Count occurrences of desired PATTERN in directory",
 	Long:  countDesc,
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
