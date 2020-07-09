@@ -23,7 +23,7 @@ import (
 )
 
 const countDesc = `
-This command takes a search criteria and counts the occurances in the desired directory.
+This command takes a search PATTERN and counts the occurances in the desired directory.
 
 Default directory is current directory.
 `
