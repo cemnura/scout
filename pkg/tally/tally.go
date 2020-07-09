@@ -10,9 +10,9 @@ func Tally(bs []byte, sbs []byte) (count int, err error) {
 }
 
 // Finds the count of bytes in given bytes
-func TallyCaseSensitive(bs, sbs []byte, caseSensitiveFlag bool) (count int, err error) {
+func TallyCaseSensitive(bs, sbs []byte, caseInSensitiveFlag bool) (count int, err error) {
 
-	if !caseSensitiveFlag {
+	if caseInSensitiveFlag {
 		bs = bytes.ToLower(bs)
 		sbs = bytes.ToLower(sbs)
 	}

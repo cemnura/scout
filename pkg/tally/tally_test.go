@@ -50,7 +50,7 @@ func TestCaseSensitive(t *testing.T) {
 func TestCaseInsensitive(t *testing.T) {
 	testfile, _ := ioutil.ReadFile("testdata/lorem.txt")
 	for _, pair := range caseInSensitivePair {
-		count, _ := TallyCaseSensitive(testfile, pair.value, false)
+		count, _ := TallyCaseSensitive(testfile, pair.value, true)
 		if count != pair.expected {
 			t.Errorf("Didn't find the expected tally of %d, got %d of %s", pair.expected, count, pair.value)
 		}
