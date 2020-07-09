@@ -28,8 +28,9 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "scout",
-	Short: "A tool for counting occurrances",
+	Use:     "scout",
+	Version: "0.1",
+	Short:   "A tool for counting occurrances",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
