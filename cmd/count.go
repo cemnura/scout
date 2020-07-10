@@ -36,7 +36,13 @@ var countCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		ignoreCase, _ := rootCmd.PersistentFlags().GetBool("ignore-case")
-		result := action.Count(args[0], args[1], ignoreCase)
+		result, err := action.Count(args[0], args[1], ignoreCase)
+
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
 		fmt.Println(result)
 	},
 }

@@ -1,6 +1,7 @@
 package horse
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -8,7 +9,12 @@ import (
 	"strings"
 )
 
-func Gallop(path string) (out []byte) {
+func Gallop(path string) (out []byte, err error) {
+
+	if _, err := isExist(path); err != nil {
+		return nil, fmt.Errorf("There is no %v file or directory", path)
+	}
+
 	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 
 		if !info.IsDir() {
@@ -27,7 +33,7 @@ func Gallop(path string) (out []byte) {
 	return
 }
 
-func GallopIncludeHidden(path string) (out []byte) {
+func GallopIncludeHidden(path string) (out []byte, err error) {
 	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if !info.IsDir() {
 			content, err := ioutil.ReadFile(path)
@@ -40,4 +46,14 @@ func GallopIncludeHidden(path string) (out []byte) {
 	})
 
 	return
+}
+
+func isExist(path string) (bool, error) {
+
+	_, err := os.Stat(path)
+	if os.IsNotExist(err) {
+		return false, err
+	}
+
+	return true, nil
 }
