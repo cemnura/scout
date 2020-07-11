@@ -4,10 +4,10 @@ import "testing"
 
 func TestGallop(t *testing.T) {
 
-	files, _ := Gallop("testdata")
+	occurrances, _ := Gallop("testdata", "1", true)
 
-	if len(files) != 6 {
-		t.Error("Expected 6, got ", len(files))
+	if occurrances != 1 {
+		t.Error("Expected 1, got ", occurrances)
 	}
 }
 
@@ -22,9 +22,15 @@ func TestGallopIncludeHidden(t *testing.T) {
 
 func TestGallopInvalidFile(t *testing.T) {
 
-	_, err := Gallop("spoon")
+	_, err := Gallop("spoon", "1", true)
 
 	if err == nil {
 		t.Error("There is a spoon")
+	}
+}
+
+func BenchmarkGallop(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Gallop("testdata", "1", true)
 	}
 }

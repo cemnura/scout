@@ -2,6 +2,7 @@ package horse
 
 import (
 	"fmt"
+	"github.com/cemnura/scout/pkg/tally"
 	"io/ioutil"
 	"log"
 	"os"
@@ -9,10 +10,10 @@ import (
 	"strings"
 )
 
-func Gallop(path string) (out []byte, err error) {
+func Gallop(path, search string, caseSensitive bool) (occurances int, err error) {
 
 	if _, err := isExist(path); err != nil {
-		return nil, fmt.Errorf("There is no %v file or directory", path)
+		return -1, fmt.Errorf("There is no %v file or directory", path)
 	}
 
 	filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
@@ -22,7 +23,14 @@ func Gallop(path string) (out []byte, err error) {
 			if err != nil {
 				log.Fatal(err)
 			}
-			out = append(out, content...)
+			occurance, err := tally.TallyCaseSensitive(content, []byte(search), caseSensitive)
+
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			occurances += occurance
+
 		} else if strings.HasPrefix(info.Name(), ".") && len(info.Name()) != 1 {
 			return filepath.SkipDir
 
