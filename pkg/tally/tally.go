@@ -6,7 +6,7 @@ import (
 
 // Finds the count of bytes in given byte
 func Tally(bs []byte, sbs []byte) (count int, err error) {
-	return TallyCaseSensitive(bs, sbs, true)
+	return TallyCaseSensitive(bs, sbs, false)
 }
 
 // Finds the count of bytes in given bytes
